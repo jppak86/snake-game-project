@@ -1,0 +1,16 @@
+.grid-container{
+  display: grid;
+  grid-template-columns: repeat(10,auto [col-start]);
+  grid-row-gap: 5px;
+  grid-column-gap: 5px;
+  justify-content: center;
+  align-content: center;
+  
+  
+}
+
+.grid-item{
+  background-color: aqua;
+  border: 1px solid black;
+}
+
