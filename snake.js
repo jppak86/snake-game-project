@@ -2,13 +2,34 @@
 // Initialize with init function
 	// add restart function
   // Define variables
-    // let score ;
-    // let snakeStartLo;
-    // let applelLo;
+
+  // let score;
+  // let snakeStartLo;
+  // let applelLo;
 
 // Draw a game board 
 	// Define a small cell using CSS  grid
   // make a function name "buildBoard"
+  function buildBoard(){
+    for (let i = 0; i < 900; i++){
+      const cellEl = document.createElement("div");
+      cellEl.setAttribute("class", "cell");
+      gridContainerEl.appendChild(cellEl);
+      const cellType = document.createElement("div");
+      cellType.setAttribute("class", "cell-type");
+      cellType.setAttribute("id", i);
+
+      cellEl.appendChild(cellType);
+    }
+
+  }
+  
+  const gridContainerEl = document.getElementById("grid-container");
+
+
+
+  
+  buildBoard()
 	// assign a cell as a div by using for loop
 
 // Snake moves
