@@ -67,8 +67,10 @@ function moveByArrow() {
 }
 
 function nextpostion () {
-  
+  if(randomNum === 
+
 }
+
       // define "render" function which makes snake keeps moving to forward direction if there is no arrow key input
     // Stop moving when hit one of four walls
     // Change direction with arrow keys
