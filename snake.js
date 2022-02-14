@@ -49,8 +49,26 @@
     document.getElementById(randomNum).style.backgroundColor = "red"
   }
 randomApple()
+
+function moveByArrow() {
+  document.addEventListener('keydown', (e) => {
+    e = e || window.event;
+    if (e.key === 'ArrowUp') {
+      console.log('up arrow pressed')
+    } else if (e.key === 'ArrowDown') {
+      console.log('down arrow pressed')
+    } else if (e.key === 'ArrowLeft') {
+      console.log('left arrow pressed')
+    } else if (e.key === 'ArrowRight') {
+      console.log('right arrow pressed')
+    }
+  });
+
+}
+
+function nextpostion () {
   
- 
+}
       // define "render" function which makes snake keeps moving to forward direction if there is no arrow key input
     // Stop moving when hit one of four walls
     // Change direction with arrow keys
