@@ -67,7 +67,10 @@ function moveByArrow() {
 }
 
 function nextpostion () {
-  if(randomNum === 
+  let position = [];
+  if(randomNum === position[3]){
+    document.getElementById(randomNum).style.backgroundColor = "black"
+  }
 
 }
 
