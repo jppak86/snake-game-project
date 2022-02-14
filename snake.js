@@ -39,7 +39,7 @@
   function keepMoving(){
     let startPosition= [397,398,399,400];
     startPosition.forEach(i => document.getElementById(`${i}`).style.backgroundColor = "black")
-
+    for(let i)
   }
 
   keepMoving()
@@ -73,6 +73,7 @@ function nextpostion () {
   }
 
 }
+
 
       // define "render" function which makes snake keeps moving to forward direction if there is no arrow key input
     // Stop moving when hit one of four walls
