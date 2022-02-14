@@ -3,7 +3,8 @@
 	// add restart function
   // Define variables
 
-  // let score;
+  let score;
+  let snakeLength = 1;
   // let snakeStartLo;
   // let applelLo;
 
@@ -37,9 +38,14 @@
     // Keep moving
 
   function keepMoving(){
-    let startPosition= [397,398,399,400];
-    startPosition.forEach(i => document.getElementById(`${i}`).style.backgroundColor = "black")
-    for(let i)
+    let startPosition= [400]
+    const snakeColor = startPosition.forEach(i => document.getElementById(`${i}`).style.backgroundColor = "black");
+    // function position(){
+    //   position = startPosition;
+    //   startPosition.shift().push("401")
+    //   console.log(position)
+    // }
+    // position()
   }
 
   keepMoving()
@@ -54,25 +60,26 @@ function moveByArrow() {
   document.addEventListener('keydown', (e) => {
     e = e || window.event;
     if (e.key === 'ArrowUp') {
-      console.log('up arrow pressed')
+      postion1 = startPosition[0] +  30
+      
     } else if (e.key === 'ArrowDown') {
-      console.log('down arrow pressed')
+      startPosition[0](el -= 30)
     } else if (e.key === 'ArrowLeft') {
-      console.log('left arrow pressed')
+      startPosition.forEach(el -= 1)
     } else if (e.key === 'ArrowRight') {
-      console.log('right arrow pressed')
+      startPosition.forEach(el += 1)
     }
   });
 
 }
+moveByArrow()
+// function nextpostion () {
+//   let position = [];
+//   if(randomNum === position[3]){
+//     document.getElementById(randomNum).style.backgroundColor = "black"
+//   } 
 
-function nextpostion () {
-  let position = [];
-  if(randomNum === position[3]){
-    document.getElementById(randomNum).style.backgroundColor = "black"
-  }
-
-}
+// }
 
 
       // define "render" function which makes snake keeps moving to forward direction if there is no arrow key input
