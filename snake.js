@@ -10,6 +10,7 @@
 // Draw a game board 
 	// Define a small cell using CSS  grid
   // make a function name "buildBoard"
+  // assign a cell as a div by using for loop
   function buildBoard(){
     for (let i = 0; i < 900; i++){
       const cellEl = document.createElement("div");
@@ -30,10 +31,26 @@
 
   
   buildBoard()
-	// assign a cell as a div by using for loop
+	
 
 // Snake moves
     // Keep moving
+
+  function keepMoving(){
+    let startPosition= [397,398,399,400];
+    startPosition.forEach(i => document.getElementById(`${i}`).style.backgroundColor = "black")
+
+  }
+
+  keepMoving()
+
+  function randomApple(){
+    randomNum = Math.floor(Math.random()*900)
+    document.getElementById(randomNum).style.backgroundColor = "red"
+  }
+randomApple()
+  
+ 
       // define "render" function which makes snake keeps moving to forward direction if there is no arrow key input
     // Stop moving when hit one of four walls
     // Change direction with arrow keys
