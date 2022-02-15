@@ -8,7 +8,10 @@
   let snakeLength = 1;
   let startPosition = [579, 580, 581];
   let direction = 1;
-  
+  let speed = 0.9;
+  let intervalTime = 0;
+  let interval = 0;
+  let gridContainerEl = document.getElementById("grid-container");
 
   // let snakeStartLo;
   // let applelLo;
@@ -33,7 +36,7 @@
   
   buildBoard()
 
-const gridContainerEl = document.getElementById("grid-container");
+
 const cells = document.querySelectorAll(".cell-type")
 
 
@@ -46,20 +49,24 @@ const cells = document.querySelectorAll(".cell-type")
 
   function keepMoving(){
     let startPosition= [579, 580, 581];
-    const snakeColor = startPosition.forEach(i => document.getElementById(`${i}`).style.backgroundColor = "black");
-    let nextPosition = startPosition.pop().unshift(startPosition[0]+ direction);
-    // function position(){
-    //   position = startPosition;
-    //   startPosition.shift().push("401")
-    //   console.log(position)
-    // }
-    // position()
+    startPosition.forEach(i => document.getElementById(`${i}`).style.backgroundColor = "black");
+    startPosition.pop().unshift(startPosition[0]+ direction);
+    eatApple();
+
   }
 
-  keepMoving()
 
   function eatApple(){
-    
+    if(cells[startPosition[0]] === randomAppleLo){
+      document.getElementById(randomAppleLo).style.backgroundColor = "black"
+      startPosition.push(startPosition[startPosition.length-1]);
+      randomApple();
+      score++;
+      scoreSelect.innerHTML = score;
+      
+
+    }
+
   }
 
   function randomApple(){
