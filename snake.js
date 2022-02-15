@@ -52,21 +52,13 @@ function init() {
 
 function gameOver() {
   if(startPosition[0] + 30 >= 900 && direction === 30) {
-    alert("You hit the bottom wall! Please try again!");
-    popup.style.display = "flex";
-    return clearInterval(interval);
+    restartGame()
   } else if(startPosition[0] % 30 === 30 -1 && direction === 1){
-    alert("You hit the left wall! Please try again!");
-    popup.style.display = "flex";
-    return clearInterval(interval);
+    restartGame()
   } else if(startPosition[0] % 30 === 0 && direction === -1){
-    alert("You hit the right wall! Please try again!");
-    popup.style.display = "flex";
-    return clearInterval(interval);
+    restartGame()
   } else if(startPosition[0] - 30 <= 0 && direction === -30 ){
-    alert("You hit the upper wall! Please try again!");
-    popup.style.display = "flex";
-    return clearInterval(interval);
+    restartGame()
   } else {
     keepMoving();
   }
@@ -75,14 +67,15 @@ function gameOver() {
 function keepMoving(){
   startPosition.pop();
   startPosition.unshift(startPosition[0] + direction);
-  eatApple();
   startPosition.forEach(i => document.getElementById(`${i}`).style.backgroundColor = "black");
+  eatApple();
+  
 }
 
 function eatApple(){
   if(startPosition[0] === randomAppleLo){
     document.getElementById(randomAppleLo).style.backgroundColor = "black"
-    startPosition.push(startPosition[startPosition.length-1]);
+    startPosition.push(randomAppleLo);
     randomApple();
     score++;
     scoreSelect.innerHTML = score;
@@ -93,32 +86,34 @@ function eatApple(){
 }
 
 function randomApple(){
-  do{
+  
     randomAppleLo = Math.floor(Math.random()*900);
-  } while (randomAppleLo === startPosition[0]);
-  document.getElementById(randomAppleLo).style.backgroundColor = "red"
+    document.getElementById(randomAppleLo).style.backgroundColor = "red";
+ 
+  
 }
 
-function arrowKey(){
-  document.addEventListener('keydown', (e) => {
-    e = e || window.event;
-    if (e.key === 'ArrowUp') {
-      direction = +30;
-    } else if (e.key === 'ArrowDown') {
-      direction = -30;
-    } else if (e.key === 'ArrowLeft') {
-      direction = -1;
-    } else if (e.key === 'ArrowRight') {
-      direction = 1;
-    }
-  });
-}
+
+document.addEventListener('keydown', (e) => {
+  e = e || window.event;
+  if (e.key === 'ArrowUp') {
+    direction = -30;
+  } else if (e.key === 'ArrowDown') {
+    direction = +30;
+  } else if (e.key === 'ArrowLeft') {
+    direction = -1;
+  } else if (e.key === 'ArrowRight') {
+    direction = 1;
+  }
+});
+
 const resetBtn = document.querySelector("button")
 resetBtn.addEventListener("click", restartGame)
 
 function restartGame() {
+  init();
 buildBoard();
-init();
+
 }
 
 
