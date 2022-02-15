@@ -3,15 +3,16 @@
 	// add restart function
   // Define variables
 
-  let score = 0;
-  let scoreSelect = document.querySelector(".score");
-  let snakeLength = 1;
-  let startPosition = [579, 580, 581];
-  let direction = 1;
-  let speed = 0.9;
-  let intervalTime = 0;
-  let interval = 0;
-  let gridContainerEl = document.getElementById("grid-container");
+let score = 0;
+let scoreSelect = document.querySelector(".score");
+let snakeLength = 1;
+let startPosition = [579, 580, 581];
+let direction = 1;
+let speed = 0.9;
+let intervalTime = 0;
+let interval = 0;
+let gridContainerEl = document.getElementById("grid-container");
+let cells = document.querySelectorAll(".cell-type")
 
   // let snakeStartLo;
   // let applelLo;
@@ -20,24 +21,43 @@
 	// Define a small cell using CSS  grid
   // make a function name "buildBoard"
   // assign a cell as a div by using for loop
-  function buildBoard(){
-    for (let i = 0; i < 900; i++){
-      const cellEl = document.createElement("div");
-      cellEl.setAttribute("class", "cell");
-      gridContainerEl.appendChild(cellEl);
-      const cellType = document.createElement("div");
-      cellType.setAttribute("class", "cell-type");
-      cellType.setAttribute("id", i);
+function buildBoard() {
+  for (let i = 0; i < 900; i++){
+    const cellEl = document.createElement("div");
+    cellEl.setAttribute("class", "cell");
+    gridContainerEl.appendChild(cellEl);
+    const cellType = document.createElement("div");
+    cellType.setAttribute("class", "cell-type");
+    cellType.setAttribute("id", i);
+    cellEl.appendChild(cellType);
+  }
+}
 
-      cellEl.appendChild(cellType);
-    }
-
+function init() {
+  randomApple()
+  direction = 1;
+  scoreSelect.innerHTML = score;
+  startPosition = [579, 580, 581];
+  startPosition.forEach(i => document.getElementById(`${i}`).style.backgroundColor = "black");
   }
   
-  buildBoard()
+function gameOver() {
+  if(startPosition[0] + 30 >= 900 && direction === 30) {
+    alert("You hit the bottom wall! Please try again!");
+    popup.style.display = "flex";
+  } else if(startPosition[0] % 30 === 30 -1 && direction === 1){
+    alert("You hit the left wall! Please try again!");
+    popup.style.display = "flex";
+  } else if(startPosition[0] % 30 === 0 && direction === -1){
+    alert("You hit the right wall! Please try again!");
+    popup.style.display = "flex";
+  } else if(startPosition[0] - 30 <= 0 && direction === -30 ){
+    alert("You hit the upper wall! Please try again!");
+    popup.style.display = "flex";
+  }
+}
 
 
-const cells = document.querySelectorAll(".cell-type")
 
 
   
@@ -69,13 +89,15 @@ const cells = document.querySelectorAll(".cell-type")
 
   }
 
-  function randomApple(){
-    do{
-      randomAppleLo = Math.floor(Math.random()*900);
-    } while (cells[randomAppleLo] === nextPosition[0]);
-    document.getElementById(randomAppleLo).style.backgroundColor = "red"
-  }
-randomApple()
+function randomApple(){
+  do{
+    randomAppleLo = Math.floor(Math.random()*900);
+  } while (cells[randomAppleLo] === nextPosition[0]);
+  document.getElementById(randomAppleLo).style.backgroundColor = "red"
+ }
+
+ 
+
 
 // function moveByArrow() {
 //   document.addEventListener('keydown', (e) => {
