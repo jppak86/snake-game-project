@@ -11,7 +11,6 @@ let direction = 1;
 let speed = 0.9;
 let intervalTime = 0;
 let interval = 0;
-let gridContainerEl = document.getElementById("grid-container");
 let cells = document.querySelectorAll(".cell-type")
 
   // let snakeStartLo;
@@ -21,7 +20,11 @@ let cells = document.querySelectorAll(".cell-type")
 	// Define a small cell using CSS  grid
   // make a function name "buildBoard"
   // assign a cell as a div by using for loop
+buildBoard()
+init()
+
 function buildBoard() {
+  const gridContainerEl = document.getElementById("grid-container");
   for (let i = 0; i < 900; i++){
     const cellEl = document.createElement("div");
     cellEl.setAttribute("class", "cell");
@@ -33,70 +36,90 @@ function buildBoard() {
   }
 }
 
+
 function init() {
-  randomApple()
+  randomApple();
   direction = 1;
   scoreSelect.innerHTML = score;
   startPosition = [579, 580, 581];
   startPosition.forEach(i => document.getElementById(`${i}`).style.backgroundColor = "black");
+
+  intervalTime = 1000;
+  interval = setInterval(gameOver, intervalTime);
   }
   
+
+
 function gameOver() {
   if(startPosition[0] + 30 >= 900 && direction === 30) {
     alert("You hit the bottom wall! Please try again!");
     popup.style.display = "flex";
+    return clearInterval(interval);
   } else if(startPosition[0] % 30 === 30 -1 && direction === 1){
     alert("You hit the left wall! Please try again!");
     popup.style.display = "flex";
+    return clearInterval(interval);
   } else if(startPosition[0] % 30 === 0 && direction === -1){
     alert("You hit the right wall! Please try again!");
     popup.style.display = "flex";
+    return clearInterval(interval);
   } else if(startPosition[0] - 30 <= 0 && direction === -30 ){
     alert("You hit the upper wall! Please try again!");
     popup.style.display = "flex";
+    return clearInterval(interval);
+  } else {
+    keepMoving();
   }
 }
 
+function keepMoving(){
+  startPosition.pop();
+  startPosition.unshift(startPosition[0] + direction);
+  eatApple();
+  startPosition.forEach(i => document.getElementById(`${i}`).style.backgroundColor = "black");
+}
 
-
-
-  
-  
-	
-
-// Snake moves
-    // Keep moving
-
-  function keepMoving(){
-    let startPosition= [579, 580, 581];
-    startPosition.forEach(i => document.getElementById(`${i}`).style.backgroundColor = "black");
-    startPosition.pop().unshift(startPosition[0]+ direction);
-    eatApple();
-
+function eatApple(){
+  if(startPosition[0] === randomAppleLo){
+    document.getElementById(randomAppleLo).style.backgroundColor = "black"
+    startPosition.push(startPosition[startPosition.length-1]);
+    randomApple();
+    score++;
+    scoreSelect.innerHTML = score;
+    clearInterval(interval);
+    intervalTime = intervalTime * speed;
+    interval = setInterval(gameOver, intervalTime);
   }
-
-
-  function eatApple(){
-    if(cells[startPosition[0]] === randomAppleLo){
-      document.getElementById(randomAppleLo).style.backgroundColor = "black"
-      startPosition.push(startPosition[startPosition.length-1]);
-      randomApple();
-      score++;
-      scoreSelect.innerHTML = score;
-      
-
-    }
-
-  }
+}
 
 function randomApple(){
   do{
     randomAppleLo = Math.floor(Math.random()*900);
-  } while (cells[randomAppleLo] === nextPosition[0]);
+  } while (randomAppleLo === startPosition[0]);
   document.getElementById(randomAppleLo).style.backgroundColor = "red"
- }
+}
 
- 
+function arrowKey(){
+  document.addEventListener('keydown', (e) => {
+    e = e || window.event;
+    if (e.key === 'ArrowUp') {
+      direction = +30;
+    } else if (e.key === 'ArrowDown') {
+      direction = -30;
+    } else if (e.key === 'ArrowLeft') {
+      direction = -1;
+    } else if (e.key === 'ArrowRight') {
+      direction = 1;
+    }
+  });
+}
+const resetBtn = document.querySelector("button")
+resetBtn.addEventListener("click", restartGame)
+
+function restartGame() {
+buildBoard();
+init();
+}
 
 
 // function moveByArrow() {
