@@ -3,8 +3,13 @@
 	// add restart function
   // Define variables
 
-  let score;
+  let score = 0;
+  let scoreSelect = document.querySelector(".score");
   let snakeLength = 1;
+  let startPosition = [579, 580, 581];
+  let direction = 1;
+  
+
   // let snakeStartLo;
   // let applelLo;
 
@@ -26,20 +31,23 @@
 
   }
   
-  const gridContainerEl = document.getElementById("grid-container");
+  buildBoard()
 
+const gridContainerEl = document.getElementById("grid-container");
+const cells = document.querySelectorAll(".cell-type")
 
 
   
-  buildBoard()
+  
 	
 
 // Snake moves
     // Keep moving
 
   function keepMoving(){
-    let startPosition= [400]
+    let startPosition= [579, 580, 581];
     const snakeColor = startPosition.forEach(i => document.getElementById(`${i}`).style.backgroundColor = "black");
+    let nextPosition = startPosition.pop().unshift(startPosition[0]+ direction);
     // function position(){
     //   position = startPosition;
     //   startPosition.shift().push("401")
@@ -50,29 +58,35 @@
 
   keepMoving()
 
+  function eatApple(){
+    
+  }
+
   function randomApple(){
-    randomNum = Math.floor(Math.random()*900)
-    document.getElementById(randomNum).style.backgroundColor = "red"
+    do{
+      randomAppleLo = Math.floor(Math.random()*900);
+    } while (cells[randomAppleLo] === nextPosition[0]);
+    document.getElementById(randomAppleLo).style.backgroundColor = "red"
   }
 randomApple()
 
-function moveByArrow() {
-  document.addEventListener('keydown', (e) => {
-    e = e || window.event;
-    if (e.key === 'ArrowUp') {
-      postion1 = startPosition[0] +  30
+// function moveByArrow() {
+//   document.addEventListener('keydown', (e) => {
+//     e = e || window.event;
+//     if (e.key === 'ArrowUp') {
+//       postion1 = startPosition[0] +  30
       
-    } else if (e.key === 'ArrowDown') {
-      startPosition[0](el -= 30)
-    } else if (e.key === 'ArrowLeft') {
-      startPosition.forEach(el -= 1)
-    } else if (e.key === 'ArrowRight') {
-      startPosition.forEach(el += 1)
-    }
-  });
+//     } else if (e.key === 'ArrowDown') {
+//       startPosition[0](el -= 30)
+//     } else if (e.key === 'ArrowLeft') {
+//       startPosition.forEach(el -= 1)
+//     } else if (e.key === 'ArrowRight') {
+//       startPosition.forEach(el += 1)
+//     }
+//   });
 
-}
-moveByArrow()
+// }
+// moveByArrow()
 // function nextpostion () {
 //   let position = [];
 //   if(randomNum === position[3]){
