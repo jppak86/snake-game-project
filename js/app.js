@@ -3,9 +3,19 @@ let score = 0;
 let scoreSelect = document.querySelector(".score");
 let startPosition = [579, 580, 581];
 let direction = 1;
-let speed = 0.9;
+let speed = 0.8;
 let intervalTime = 0;
 let interval = 0;
+
+
+
+const musicBack = new Audio("../audio/back-ground.mp3");
+const backSound = document.querySelector(".musicBtn");
+
+backSound.addEventListener("click", function(evt) {
+  musicBack.volume = .10
+  musicBack.play()
+})
 
 
 buildBoard()
@@ -34,10 +44,10 @@ function init() {
   direction = 1;
   scoreSelect.innerHTML =`Score: ${score}`;
   score = 0;
-  speed = 0.9;
+  speed = 0.8;
   startPosition = [579, 580, 581, 582];
   startPosition.forEach(i => document.getElementById(`${i}`).style.backgroundColor = "black");
-  intervalTime = 500;
+  intervalTime = 800;
   interval = setInterval(gameOver, intervalTime);
   }
   
@@ -60,18 +70,29 @@ function gameOver() {
   let snakeHead = startPosition[startPosition.length-1];
   let nextCell = startPosition[startPosition.length-1] + direction;
   if(snakeHead+ 30 >= 900 && direction === 30) {
+    alert("you hit the bottom wall!")
+
     restartGame();
   } if(snakeHead % 30 === 30 -1 && direction === 1){
+    alert("you hit the right wall!")
     restartGame();
   } if(snakeHead % 30 === 0 && direction === -1){
+    alert("you hit the left wall!")
     restartGame();
   } if(snakeHead - 30 <= 0 && direction === -30 ){
+    alert("you hit the uppper wall!")
     restartGame();
   } if(startPosition.slice(1).includes(nextCell)){
+    alert("you hit yourself!")
     restartGame();
   } else {
     keepMoving();
   }
+}
+
+function alertMessage () {
+
+
 }
 
 function eatApple(){
@@ -105,12 +126,16 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-const resetBtn = document.querySelector("button")
+const resetBtn = document.getElementById("restart")
 resetBtn.addEventListener("click", restartGame)
 
 function restartGame() {
   init();
   buildBoard();
-  clearInterval(interval);
+  intervalTime = 800;
+  speed =0.8;
+  musicBack.pause();
+  musicBack.currentTime = 0;
 
 }
+
