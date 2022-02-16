@@ -37,6 +37,7 @@ body {
 .title {
   margin-bottom: 50px;
   font-size: 80px;
+  color: goldenrod;
 }
 
 #grid-container {
@@ -58,12 +59,18 @@ body {
 .cell {
   width: 20px;
   height: 20px;
-  border: 0.1px dotted rgb(23, 179, 62);
+  /* border: 0.1px dotted rgb(23, 179, 62); */
   
 
 }
 
 button {
   margin: 15px;
+ 
   
+}
+
+.score {
+  font-size: 30px;
+  color: chartreuse;
 }

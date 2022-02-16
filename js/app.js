@@ -1,16 +1,18 @@
 
 let score = 0;
 let scoreSelect = document.querySelector(".score");
-let snakeLength = 1;
 let startPosition = [579, 580, 581];
 let direction = 1;
 let speed = 0.9;
 let intervalTime = 0;
 let interval = 0;
-let cells = document.querySelectorAll(".cell-type")
+
 
 buildBoard()
 init()
+
+
+
 
 function buildBoard() {
   const gridContainerEl = document.getElementById("grid-container");
@@ -30,54 +32,55 @@ function buildBoard() {
 function init() {
   randomApple();
   direction = 1;
-  scoreSelect.innerHTML = score;
-  startPosition = [579, 580, 581];
+  scoreSelect.innerHTML =`Score: ${score}`;
+  score = 0;
+  speed = 0.9;
+  startPosition = [579, 580, 581, 582];
   startPosition.forEach(i => document.getElementById(`${i}`).style.backgroundColor = "black");
-
-  intervalTime = 1000;
+  intervalTime = 500;
   interval = setInterval(gameOver, intervalTime);
   }
   
-
+  function keepMoving(){
+    startPosition.shift();
+    startPosition.push(startPosition[startPosition.length-1] + direction);
+    startPosition.forEach(i => document.getElementById(`${i}`).style.backgroundColor = "black");
+    const cells = document.querySelectorAll(".cell-type")
+    cells.forEach(cell => {
+    if(!startPosition.includes(parseInt(cell.id))){
+      cell.style.backgroundColor = "#0c81b8";
+    }if(startPosition[startPosition.length -1] !== randomAppleLo){
+      cells[randomAppleLo].style.backgroundColor = "red"
+    }
+    })
+    eatApple()
+  }
 
 function gameOver() {
-  if(startPosition[0] + 30 >= 900 && direction === 30) {
-    restartGame()
-  } else if(startPosition[0] % 30 === 30 -1 && direction === 1){
-    restartGame()
-  } else if(startPosition[0] % 30 === 0 && direction === -1){
-    restartGame()
-  } else if(startPosition[0] - 30 <= 0 && direction === -30 ){
-    restartGame()
+  let snakeHead = startPosition[startPosition.length-1];
+  let nextCell = startPosition[startPosition.length-1] + direction;
+  if(snakeHead+ 30 >= 900 && direction === 30) {
+    restartGame();
+  } if(snakeHead % 30 === 30 -1 && direction === 1){
+    restartGame();
+  } if(snakeHead % 30 === 0 && direction === -1){
+    restartGame();
+  } if(snakeHead - 30 <= 0 && direction === -30 ){
+    restartGame();
+  } if(startPosition.slice(1).includes(nextCell)){
+    restartGame();
   } else {
     keepMoving();
   }
 }
 
-function keepMoving(){
-  startPosition.shift();
-  startPosition.push(startPosition[startPosition.length-1] + direction);
-  startPosition.forEach(i => document.getElementById(`${i}`).style.backgroundColor = "black");
-  const cells = document.querySelectorAll(".cell-type")
-  cells.forEach(cell => {
-  if(!startPosition.includes(parseInt(cell.id))){
-    cell.style.backgroundColor = "#0c81b8";
-  }else if(startPosition[0] !== randomAppleLo){
-    cells[randomAppleLo].style.backgroundColor = "red"
-  }
-  })
-    
-  eatApple();
-  
-}
-
 function eatApple(){
-  if(startPosition[0] === randomAppleLo){
-    document.getElementById(randomAppleLo).style.backgroundColor = "black"
+  if(startPosition[startPosition.length -1] === randomAppleLo){
     startPosition.push(randomAppleLo);
+    document.getElementById(randomAppleLo).style.backgroundColor = "black"
     randomApple();
     score++;
-    scoreSelect.innerHTML = score;
+    scoreSelect.innerHTML =`Score: ${score}`;
     clearInterval(interval);
     intervalTime = intervalTime * speed;
     interval = setInterval(gameOver, intervalTime);
@@ -85,13 +88,9 @@ function eatApple(){
 }
 
 function randomApple(){
-  
-    randomAppleLo = Math.floor(Math.random()*900);
-    document.getElementById(randomAppleLo).style.backgroundColor = "red";
- 
-  
+  randomAppleLo = Math.floor(Math.random()*900);
+  document.getElementById(randomAppleLo).style.backgroundColor = "red";
 }
-
 
 document.addEventListener('keydown', (e) => {
   e = e || window.event;
@@ -111,6 +110,7 @@ resetBtn.addEventListener("click", restartGame)
 
 function restartGame() {
   init();
-buildBoard();
+  buildBoard();
+  clearInterval(interval);
 
 }
