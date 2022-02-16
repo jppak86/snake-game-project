@@ -3,7 +3,7 @@ let scoreSelect = document.querySelector(".score");
 let startPosition = [579, 580, 581];
 let direction = 1;
 let speed = 0.8;
-let intervalTime = 0;
+let intervalTime = 1000;
 let interval = 0;
 
 
@@ -41,11 +41,12 @@ function buildBoard() {
 function init() {
   randomApple();
   direction = 1;
-  scoreSelect.innerHTML =`Score: ${score}`;
   score = 0;
+  scoreSelect.innerHTML =`Score: ${score}`;
   speed = 0.8;
   startPosition = [579, 580, 581, 582];
   startPosition.forEach(i => document.getElementById(`${i}`).style.backgroundColor = "black");
+  clearInterval(interval)
   intervalTime = 800;
   interval = setInterval(gameOver, intervalTime);
   }
@@ -108,8 +109,10 @@ function eatApple(){
 }
 
 function randomApple(){
+  do{
   randomAppleLo = Math.floor(Math.random()*900);
-  document.getElementById(randomAppleLo).style.backgroundColor = "red";
+  document.getElementById(randomAppleLo).style.backgroundColor = "red";}
+  while (startPosition.includes(randomAppleLo));
 }
 
 document.addEventListener('keydown', (e) => {
@@ -131,8 +134,6 @@ resetBtn.addEventListener("click", restartGame)
 function restartGame() {
   init();
   buildBoard();
-  intervalTime = 800;
-  speed =0.8;
   musicBack.pause();
   musicBack.currentTime = 0;
 
