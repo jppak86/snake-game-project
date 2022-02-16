@@ -55,14 +55,15 @@ function gameOver() {
 }
 
 function keepMoving(){
-  console.log(startPosition)
-  startPosition.pop();
-  startPosition.unshift(startPosition[0] + direction);
+  startPosition.shift();
+  startPosition.push(startPosition[startPosition.length-1] + direction);
   startPosition.forEach(i => document.getElementById(`${i}`).style.backgroundColor = "black");
   const cells = document.querySelectorAll(".cell-type")
   cells.forEach(cell => {
   if(!startPosition.includes(parseInt(cell.id))){
     cell.style.backgroundColor = "#0c81b8";
+  }else if(startPosition[0] !== randomAppleLo){
+    cells[randomAppleLo].style.backgroundColor = "red"
   }
   })
     
