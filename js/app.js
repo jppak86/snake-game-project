@@ -1,4 +1,3 @@
-
 let score = 0;
 let scoreSelect = document.querySelector(".score");
 let startPosition = [579, 580, 581];
@@ -138,4 +137,3 @@ function restartGame() {
   musicBack.currentTime = 0;
 
 }
-
