@@ -13,8 +13,8 @@ const cells = document.querySelectorAll(".cell-type")
 
 
 const musicBack = new Audio("../audio/back-ground.mp3");
-const musicGameOver = new Audio("../audio/GameOver.wav");
-const musicWinning = new Audio("../audio/winning.wav");
+const musicGameOver = new Audio("../audio/GameOver.mp3");
+const musicWinning = new Audio("../audio/winning.mp3");
 
 
 backSound.addEventListener("click", function(evt) {
