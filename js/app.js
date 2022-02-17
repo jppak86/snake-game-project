@@ -13,6 +13,9 @@ const cells = document.querySelectorAll(".cell-type")
 
 
 const musicBack = new Audio("../audio/back-ground.mp3");
+const musicGameOver = new Audio("../audio/GameOver.wav");
+const musicWinning = new Audio("../audio/winning.wav");
+
 
 backSound.addEventListener("click", function(evt) {
   musicBack.volume = .10
@@ -87,22 +90,40 @@ function gameOver() {
   let snakeHead = startPosition[startPosition.length-1];
   let nextCell = startPosition[startPosition.length-1] + direction;
   if(snakeHead+ 30 >= 900 && direction === 30) {
-    alert("You hit the bottom wall!")
+    musicBack.pause();
+    musicGameOver.volume = .10; 
+    musicGameOver.play()
+    alert("YOU HIT THE WALL PLEASE TRY AGAIN!")
     restartGame();
   } if(snakeHead % 30 === 30 -1 && direction === 1){
-    alert("You hit the right wall!")
+    musicBack.pause();
+    musicGameOver.volume = .10; 
+    musicGameOver.play()
+    alert("YOU HIT THE WALL PLEASE TRY AGAIN!")
     restartGame();
   } if(snakeHead % 30 === 0 && direction === -1){
-    alert("You hit the left wall!")
+    musicBack.pause();
+    musicGameOver.volume = .10; 
+    musicGameOver.play()
+    alert("YOU HIT THE WALL PLEASE TRY AGAIN!")
     restartGame();
   } if(snakeHead - 30 <= 0 && direction === -30 ){
-    alert("You hit the uppper wall!")
+    musicBack.pause();
+    musicGameOver.volume = .10; 
+    musicGameOver.play()
+    alert("YOU HIT THE WALL PLEASE TRY AGAIN!")
     restartGame();
   } if(startPosition.slice(1).includes(nextCell)){
-    alert("You hit yourself!")
+    musicBack.pause();
+    musicGameOver.volume = .10; 
+    musicGameOver.play();
+    alert("YOU HIT YOURSELF PLEASE TRY AGAIN!")
     restartGame();
-  } if( score >= 10){
-    alert("You reach the impossible score! you win!!")
+  } if( score >= 1){
+    musicBack.pause();
+    musicWinning.volume = .10;
+    musicWinning.play();
+    alert("YOU REACH THE IMPOSSIBLE SCORE! YOU WIN!!")
     restartGame();
   } else {
     keepMoving();
@@ -135,6 +156,10 @@ function randomApple(){
 function restartGame() {
   init();
   buildBoard();
+  musicGameOver.pause();
+  musicGameOver.currentTime = 0;
+  musicWinning.pause();
+  musicWinning.currentTime = 0;
   musicBack.pause();
   musicBack.currentTime = 0;
 }
