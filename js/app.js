@@ -63,7 +63,7 @@ function init() {
   startPosition = [579, 580, 581, 582];
   startPosition.forEach(i => document.getElementById(`${i}`).style.backgroundColor = "#fff56c");
   clearInterval(interval)
-  intervalTime = 800;
+  intervalTime = 700;
   interval = setInterval(gameOver, intervalTime);
   }
   
