@@ -3,7 +3,7 @@
 
 ![SnakeBob image!](/assets/snakeBob-screenshot.png "snakeBob")
 
-SnakeBob is a web-based snake game which is recreated with spongebob theme. The goal of this game is to let the snake eats an apple as it lengtns its body. This game will stop with alert message when the snake hit one of walls or itself.
+SnakeBob is a web-based snake game which is recreated with spongebob theme. The goal of this game is to let the snake eat an apple as it lengtns its body. This game will stop with an alert message when the snake hits one of walls or itself.
 
 ## Background history
 
