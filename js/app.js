@@ -9,6 +9,7 @@ let interval = 0;
 const scoreSelect = document.querySelector(".score");
 const resetBtn = document.getElementById("restart")
 const backSound = document.querySelector(".musicBtn");
+const cells = document.querySelectorAll(".cell-type")
 
 
 const musicBack = new Audio("../audio/back-ground.mp3");
