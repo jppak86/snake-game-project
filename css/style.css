@@ -52,7 +52,7 @@ body {
   grid-template-columns: repeat(30,auto);
   grid-template-rows: repeat(30, auto);
   border: 20px solid #bb8b1f;
-  border-radius: 2px;
+  border-radius: 4px;
   
   
 }
@@ -70,6 +70,7 @@ body {
 #restart {
   font-family: 'SpongeBob Font Condensed', sans-serif;
   margin: 15px;
+  width: 250px; ;
   font-size: 20px;
   background-color:#0457a0 ;
   color: #fff56c;
@@ -99,7 +100,7 @@ body {
   border-radius: 10px;
   background-color: #ff808b;
   color: #f7e948;
-  margin-left: 10px;
+  margin-left: 20px;
   cursor: pointer;
   transition-duration: 0.4s;
   border: 2px solid white;
