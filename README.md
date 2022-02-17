@@ -27,8 +27,8 @@ Snake is a video game genre where the player maneuvers a growing line that becom
 ## Next Steps 🧊
 
 - [ ] Highest score
-- [ ] Media query
+- [x] Media query
 - [ ] GameOver sound
-- [ ] Winning alert
+- [x] Winning alert
 - [ ] Confetti
 
