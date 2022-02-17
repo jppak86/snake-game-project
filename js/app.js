@@ -119,7 +119,7 @@ function gameOver() {
     musicGameOver.play();
     alert("YOU HIT YOURSELF PLEASE TRY AGAIN!")
     restartGame();
-  } if( score >= 1){
+  } if( score >= 10){
     musicBack.pause();
     musicWinning.volume = .10;
     musicWinning.play();
