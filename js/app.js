@@ -77,8 +77,7 @@ function init() {
       cell.style.backgroundColor = "#26b9c8";
     }if(startPosition[startPosition.length -1] !== randomAppleLo){
       cells[randomAppleLo].style.backgroundColor = "#ed7f8c"
-    }
-    })
+    }})
     eatApple()
   }
 
