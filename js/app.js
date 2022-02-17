@@ -87,19 +87,22 @@ function gameOver() {
   let snakeHead = startPosition[startPosition.length-1];
   let nextCell = startPosition[startPosition.length-1] + direction;
   if(snakeHead+ 30 >= 900 && direction === 30) {
-    alert("you hit the bottom wall!")
+    alert("You hit the bottom wall!")
     restartGame();
   } if(snakeHead % 30 === 30 -1 && direction === 1){
-    alert("you hit the right wall!")
+    alert("You hit the right wall!")
     restartGame();
   } if(snakeHead % 30 === 0 && direction === -1){
-    alert("you hit the left wall!")
+    alert("You hit the left wall!")
     restartGame();
   } if(snakeHead - 30 <= 0 && direction === -30 ){
-    alert("you hit the uppper wall!")
+    alert("You hit the uppper wall!")
     restartGame();
   } if(startPosition.slice(1).includes(nextCell)){
-    alert("you hit yourself!")
+    alert("You hit yourself!")
+    restartGame();
+  } if( score >= 10){
+    alert("You reach the impossible score! you win!!")
     restartGame();
   } else {
     keepMoving();
