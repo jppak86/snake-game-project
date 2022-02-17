@@ -45,7 +45,7 @@ function init() {
   scoreSelect.innerHTML =`Score: ${score}`;
   speed = 0.8;
   startPosition = [579, 580, 581, 582];
-  startPosition.forEach(i => document.getElementById(`${i}`).style.backgroundColor = "black");
+  startPosition.forEach(i => document.getElementById(`${i}`).style.backgroundColor = "#fff56c");
   clearInterval(interval)
   intervalTime = 800;
   interval = setInterval(gameOver, intervalTime);
@@ -54,13 +54,13 @@ function init() {
   function keepMoving(){
     startPosition.shift();
     startPosition.push(startPosition[startPosition.length-1] + direction);
-    startPosition.forEach(i => document.getElementById(`${i}`).style.backgroundColor = "black");
+    startPosition.forEach(i => document.getElementById(`${i}`).style.backgroundColor = "#fff56c");
     const cells = document.querySelectorAll(".cell-type")
     cells.forEach(cell => {
     if(!startPosition.includes(parseInt(cell.id))){
-      cell.style.backgroundColor = "#0c81b8";
+      cell.style.backgroundColor = "#26b9c8";
     }if(startPosition[startPosition.length -1] !== randomAppleLo){
-      cells[randomAppleLo].style.backgroundColor = "red"
+      cells[randomAppleLo].style.backgroundColor = "#ed7f8c"
     }
     })
     eatApple()
@@ -98,7 +98,7 @@ function alertMessage () {
 function eatApple(){
   if(startPosition[startPosition.length -1] === randomAppleLo){
     startPosition.push(randomAppleLo);
-    document.getElementById(randomAppleLo).style.backgroundColor = "black"
+    document.getElementById(randomAppleLo).style.backgroundColor = "#fff56c"
     randomApple();
     score++;
     scoreSelect.innerHTML =`Score: ${score}`;
@@ -111,7 +111,7 @@ function eatApple(){
 function randomApple(){
   do{
   randomAppleLo = Math.floor(Math.random()*900);
-  document.getElementById(randomAppleLo).style.backgroundColor = "red";}
+  document.getElementById(randomAppleLo).style.backgroundColor = "#ed7f8c";}
   while (startPosition.includes(randomAppleLo));
 }
 
