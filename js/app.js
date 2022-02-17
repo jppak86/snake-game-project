@@ -1,5 +1,4 @@
 let score = 0;
-let scoreSelect = document.querySelector(".score");
 let startPosition = [579, 580, 581];
 let direction = 1;
 let speed = 0.8;
@@ -7,20 +6,36 @@ let intervalTime = 1000;
 let interval = 0;
 
 
+const scoreSelect = document.querySelector(".score");
+const resetBtn = document.getElementById("restart")
+const backSound = document.querySelector(".musicBtn");
+
 
 const musicBack = new Audio("../audio/back-ground.mp3");
-const backSound = document.querySelector(".musicBtn");
 
 backSound.addEventListener("click", function(evt) {
   musicBack.volume = .10
   musicBack.play()
 })
 
+document.addEventListener('keydown', (e) => {
+  e = e || window.event;
+  if (e.key === 'ArrowUp') {
+    direction = -30;
+  } else if (e.key === 'ArrowDown') {
+    direction = +30;
+  } else if (e.key === 'ArrowLeft') {
+    direction = -1;
+  } else if (e.key === 'ArrowRight') {
+    direction = 1;
+  }
+});
+
+resetBtn.addEventListener("click", restartGame)
+
 
 buildBoard()
 init()
-
-
 
 
 function buildBoard() {
@@ -51,6 +66,7 @@ function init() {
   interval = setInterval(gameOver, intervalTime);
   }
   
+
   function keepMoving(){
     startPosition.shift();
     startPosition.push(startPosition[startPosition.length-1] + direction);
@@ -66,12 +82,12 @@ function init() {
     eatApple()
   }
 
+
 function gameOver() {
   let snakeHead = startPosition[startPosition.length-1];
   let nextCell = startPosition[startPosition.length-1] + direction;
   if(snakeHead+ 30 >= 900 && direction === 30) {
     alert("you hit the bottom wall!")
-
     restartGame();
   } if(snakeHead % 30 === 30 -1 && direction === 1){
     alert("you hit the right wall!")
@@ -90,10 +106,6 @@ function gameOver() {
   }
 }
 
-function alertMessage () {
-
-
-}
 
 function eatApple(){
   if(startPosition[startPosition.length -1] === randomAppleLo){
@@ -108,6 +120,7 @@ function eatApple(){
   }
 }
 
+
 function randomApple(){
   do{
   randomAppleLo = Math.floor(Math.random()*900);
@@ -115,26 +128,10 @@ function randomApple(){
   while (startPosition.includes(randomAppleLo));
 }
 
-document.addEventListener('keydown', (e) => {
-  e = e || window.event;
-  if (e.key === 'ArrowUp') {
-    direction = -30;
-  } else if (e.key === 'ArrowDown') {
-    direction = +30;
-  } else if (e.key === 'ArrowLeft') {
-    direction = -1;
-  } else if (e.key === 'ArrowRight') {
-    direction = 1;
-  }
-});
-
-const resetBtn = document.getElementById("restart")
-resetBtn.addEventListener("click", restartGame)
 
 function restartGame() {
   init();
   buildBoard();
   musicBack.pause();
   musicBack.currentTime = 0;
-
 }
