@@ -17,7 +17,7 @@ Snake is a video game genre where the player maneuvers a growing line that becom
 
 ## Technologies used 💾
 
-- HTML
+- HTML 
 - CSS
 - JavaScript
 - git
@@ -28,7 +28,8 @@ Snake is a video game genre where the player maneuvers a growing line that becom
 
 - [ ] Highest score
 - [x] Media query
-- [ ] GameOver sound
+- [x] GameOver sound
 - [x] Winning alert
 - [ ] Confetti
+- [ ] Swipeable play
 

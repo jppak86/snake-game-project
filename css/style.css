@@ -22,7 +22,6 @@ body {
   background: radial-gradient(#333, #111);
   background-color: #000;
   color: rgb(133, 48, 14);
-  /* Use a system font, if none are available use an available sans-sarif font */
   font-family: 'SpongeBob Font Condensed', sans-serif;
   min-height: 100vh;
 }
