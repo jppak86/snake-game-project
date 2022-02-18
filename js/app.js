@@ -114,7 +114,7 @@ function gameOver() {
     musicGameOver.volume = .10; 
     musicGameOver.play();
     resetBtn.innerHTML = "YOU HIT YOURSELF PLEASE TRY AGAIN!";
-  } else if( score >= 5){
+  } else if( score >= 12){
     musicBack.pause();
     musicWinning.volume = .10;
     musicWinning.play();
