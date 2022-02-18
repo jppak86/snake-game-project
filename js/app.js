@@ -75,10 +75,10 @@ function init() {
     startPosition.shift();
     startPosition.push(startPosition[startPosition.length-1] + direction);
     startPosition.forEach(i => document.getElementById(`${i}`).style.backgroundColor = "#fff56c");
-    const cells = document.querySelectorAll(".cell-type")
+    const cells = document.querySelectorAll(".cell-type");
     cells.forEach(cell => {
     if(!startPosition.includes(parseInt(cell.id))){
-      cell.style.backgroundColor = "#26b9c8";
+      cell.style.backgroundColor = "#26b9c8"
     }if(startPosition[startPosition.length -1] !== randomAppleLo){
       cells[randomAppleLo].style.backgroundColor = "#ed7f8c"
     }})
@@ -93,13 +93,11 @@ function gameOver() {
     musicBack.pause();
     musicGameOver.volume = .10; 
     musicGameOver.play();
-    // alert("YOU HIT THE WALL PLEASE TRY AGAIN!")
     resetBtn.innerHTML = "YOU HIT THE WALL PLEASE TRY AGAIN!";
   }else if(snakeHead % 30 === 30 -1 && direction === 1){
     musicBack.pause();
     musicGameOver.volume = .10; 
     musicGameOver.play();
-    // alert("YOU HIT THE WALL PLEASE TRY AGAIN!")
     resetBtn.innerHTML = "YOU HIT THE WALL PLEASE TRY AGAIN!";
   }else if(snakeHead % 30 === 0 && direction === -1){
     musicBack.pause();

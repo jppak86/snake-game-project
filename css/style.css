@@ -73,8 +73,8 @@ body {
   font-size: 20px;
   background-color:#0457a0 ;
   color: #fff56c;
-  border: 3px solid #f7e948;
-  border-radius: 5px;
+  border: 3px solid white;
+  border-radius: 7px;
   cursor: pointer;
   transition-duration: 0.4s;
 }
@@ -102,13 +102,13 @@ body {
   margin-left: 20px;
   cursor: pointer;
   transition-duration: 0.4s;
-  border: 2px solid white;
+  border: 3px solid white;
 }
 
 .musicBtn:hover {
   background-color: #f7e948;
   color: #ff808b;
-  border: 2px solid #bb8b1f;
+  border: 3px solid #bb8b1f;
 }
 
 @media only screen and (max-width: 500px) {
