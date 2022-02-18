@@ -10,7 +10,7 @@ const scoreSelect = document.querySelector(".score");
 const resetBtn = document.getElementById("restart")
 const backSound = document.querySelector(".musicBtn");
 const cells = document.querySelectorAll(".cell-type")
-
+const titleMessage = document.querySelector(".title");
 
 const musicBack = new Audio("../audio/back-ground.mp3");
 const musicGameOver = new Audio("../audio/GameOver.mp3");
@@ -92,39 +92,35 @@ function gameOver() {
   if(snakeHead+ 30 >= 900 && direction === 30) {
     musicBack.pause();
     musicGameOver.volume = .10; 
-    musicGameOver.play()
-    alert("YOU HIT THE WALL PLEASE TRY AGAIN!")
-    restartGame();
-  } if(snakeHead % 30 === 30 -1 && direction === 1){
-    musicBack.pause();
-    musicGameOver.volume = .10; 
-    musicGameOver.play()
-    alert("YOU HIT THE WALL PLEASE TRY AGAIN!")
-    restartGame();
-  } if(snakeHead % 30 === 0 && direction === -1){
-    musicBack.pause();
-    musicGameOver.volume = .10; 
-    musicGameOver.play()
-    alert("YOU HIT THE WALL PLEASE TRY AGAIN!")
-    restartGame();
-  } if(snakeHead - 30 <= 0 && direction === -30 ){
-    musicBack.pause();
-    musicGameOver.volume = .10; 
-    musicGameOver.play()
-    alert("YOU HIT THE WALL PLEASE TRY AGAIN!")
-    restartGame();
-  } if(startPosition.slice(1).includes(nextCell)){
+    musicGameOver.play();
+    // alert("YOU HIT THE WALL PLEASE TRY AGAIN!")
+    resetBtn.innerHTML = "YOU HIT THE WALL PLEASE TRY AGAIN!";
+  }else if(snakeHead % 30 === 30 -1 && direction === 1){
     musicBack.pause();
     musicGameOver.volume = .10; 
     musicGameOver.play();
-    alert("YOU HIT YOURSELF PLEASE TRY AGAIN!")
-    restartGame();
-  } if( score >= 10){
+    // alert("YOU HIT THE WALL PLEASE TRY AGAIN!")
+    resetBtn.innerHTML = "YOU HIT THE WALL PLEASE TRY AGAIN!";
+  }else if(snakeHead % 30 === 0 && direction === -1){
+    musicBack.pause();
+    musicGameOver.volume = .10; 
+    musicGameOver.play();
+    resetBtn.innerHTML = "YOU HIT THE WALL PLEASE TRY AGAIN!";
+  } else if(snakeHead - 30 <= 0 && direction === -30 ){
+    musicBack.pause();
+    musicGameOver.volume = .10; 
+    musicGameOver.play();
+    resetBtn.innerHTML = "YOU HIT THE WALL PLEASE TRY AGAIN!";
+  } else if(startPosition.slice(1).includes(nextCell)){
+    musicBack.pause();
+    musicGameOver.volume = .10; 
+    musicGameOver.play();
+    resetBtn.innerHTML = "YOU HIT YOURSELF PLEASE TRY AGAIN!";
+  } else if( score >= 2){
     musicBack.pause();
     musicWinning.volume = .10;
     musicWinning.play();
-    alert("YOU REACH THE IMPOSSIBLE SCORE! YOU WIN!!")
-    restartGame();
+    resetBtn.innerHTML = `YOU REACH SCORE ${score} ! YOU WIN!!`;
   } else {
     keepMoving();
   }
@@ -162,4 +158,5 @@ function restartGame() {
   musicWinning.currentTime = 0;
   musicBack.pause();
   musicBack.currentTime = 0;
+  resetBtn.innerHTML = "Restart";
 }
